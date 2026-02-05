@@ -7,11 +7,12 @@ import Link from "next/link";
 import { useContactModal } from "@/components/ContactModalProvider";
 
 const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "About", href: "#about" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/#services" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "About", href: "/#about" },
+  { label: "Apply", href: "/apply" },
 ];
 
 export function Navbar() {
@@ -19,9 +20,19 @@ export function Navbar() {
   const { openContactModal } = useContactModal();
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    // Handle anchor links on the same page
     if (href.startsWith("#") && href !== "#") {
       e.preventDefault();
       const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    // Handle anchors with path (like /#services) when already on home page
+    if (href.startsWith("/#") && window.location.pathname === "/") {
+      e.preventDefault();
+      const anchor = href.substring(1);
+      const element = document.querySelector(anchor);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }

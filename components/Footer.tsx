@@ -9,12 +9,13 @@ import { useContactModal } from "@/components/ContactModalProvider";
 
 const footerLinks = {
   product: [
-    { label: "Features", href: "#services" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "Features", href: "/#services" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Apply", href: "/apply" },
   ],
   company: [
-    { label: "About Us", href: "#about" },
+    { label: "About Us", href: "/#about" },
     { label: "Contact", href: "#contact", isContactButton: true },
   ],
   legal: [
@@ -60,6 +61,16 @@ export function Footer() {
     if (href.startsWith("#") && href !== "#") {
       e.preventDefault();
       const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    // Handle anchors with path (like /#services) when already on home page
+    if (href.startsWith("/#") && window.location.pathname === "/") {
+      e.preventDefault();
+      const anchor = href.substring(1);
+      const element = document.querySelector(anchor);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }

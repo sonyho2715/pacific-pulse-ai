@@ -7,7 +7,7 @@ import { useContactModal } from "@/components/ContactModalProvider";
 const plans = [
   {
     name: "Starter",
-    price: "$49",
+    price: "$1,500",
     period: "/month",
     description: "Perfect for small businesses getting started with AI",
     features: [
@@ -22,7 +22,7 @@ const plans = [
   },
   {
     name: "Professional",
-    price: "$199",
+    price: "$2,500",
     period: "/month",
     description: "For growing businesses ready to scale",
     features: [
